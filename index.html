@@ -2,47 +2,103 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>snuzzle</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snuzzle</title>
 
 <style>
 
-body{
-  margin:0;
-  background:white;
-  font-family:Arial, Helvetica, sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  overflow:hidden;
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-align: center;
 }
 
-video{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0.2;
+/* Brand title */
+
+h1 {
+  font-size: 48px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: #FE7D98;
 }
 
-.overlay{
-  position:relative;
-  text-align:center;
-  color:black;
-  letter-spacing:2px;
+/* Sub text */
+
+.tagline {
+  color: #777;
+  margin-bottom: 40px;
+  font-size: 18px;
 }
 
-h1{
-  font-size:48px;
-  margin:0;
+/* Image container */
+
+.mixer-container {
+  position: relative;
 }
 
-p{
-  margin-top:10px;
-  font-size:16px;
+/* Floating animation */
+
+.mixer {
+  width: 320px;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Float effect */
+
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Sparkle elements */
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255,255,255,0.9);
+  animation: sparkle 2.5s infinite ease-in-out;
+}
+
+.sparkle:nth-child(2) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0.5s;
+}
+
+.sparkle:nth-child(3) {
+  top: 60%;
+  left: 85%;
+  animation-delay: 1s;
+}
+
+.sparkle:nth-child(4) {
+  top: 10%;
+  left: 70%;
+  animation-delay: 1.5s;
+}
+
+.sparkle:nth-child(5) {
+  top: 75%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+/* Sparkle animation */
+
+@keyframes sparkle {
+  0%   { opacity: 0; transform: scale(0.5); }
+  50%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
 }
 
 </style>
@@ -52,10 +108,18 @@ p{
 
 <h1>Snuzzle</h1>
 
-<img src="mixer.png" alt="Pink mixer whipping cream" class="mixer-image">
+<p class="tagline">Something sweet is being whipped up...</p>
 
-<p>Something sweet is being whipped up...</p>
+<div class="mixer-container">
 
+<img src="mixer.png" alt="Pink mixer whipping cream" class="mixer">
+
+<div class="sparkle"></div>
+<div class="sparkle"></div>
+<div class="sparkle"></div>
+<div class="sparkle"></div>
+
+</div>
 
 </body>
 </html>
