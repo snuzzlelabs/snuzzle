@@ -11,124 +11,40 @@
 body {
   margin: 0;
   height: 100vh;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  background-color: #ffffff;
+  background: #ffffff;
 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   text-align: center;
 }
 
-/* Title */
+/* Heading */
 
 h1 {
-  font-size: 72px;
-  color: #000;
+  font-size: 64px;
   font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+/* Image */
+
+img {
+  width: 360px;
+  height: auto;
+  margin-bottom: 30px;
 }
 
 /* Tagline */
 
 .tagline {
-  font-size: 20px;
+  font-size: 18px;
   color: #555;
-  margin-bottom: 60px;
-}
-
-/* Mixer container */
-
-.mixer-container {
-  position: relative;
-}
-
-/* Mixer image */
-
-.mixer {
-  width: 420px;
-  animation: float 4s ease-in-out infinite;
-  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.08));
-}
-
-/* Floating animation */
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
-}
-
-/* Sparkles */
-
-.sparkle {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #FE7D98;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(254,125,152,0.9);
-  animation: sparkle 2.5s infinite ease-in-out;
-}
-
-.sparkle:nth-child(2) {
-  top: 10%;
-  left: 10%;
-  animation-delay: 0.5s;
-}
-
-.sparkle:nth-child(3) {
-  top: 70%;
-  left: 90%;
-  animation-delay: 1s;
-}
-
-.sparkle:nth-child(4) {
-  top: 25%;
-  left: 80%;
-  animation-delay: 1.5s;
-}
-
-.sparkle:nth-child(5) {
-  top: 80%;
-  left: 20%;
-  animation-delay: 2s;
-}
-
-@keyframes sparkle {
-  0% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: 1; transform: scale(1.3); }
-  100% { opacity: 0; transform: scale(0.5); }
-}
-
-/* Footer */
-
-.footer {
-  position: absolute;
-  bottom: 25px;
-  font-size: 14px;
-  color: #999;
-}
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-  h1 {
-    font-size: 52px;
-  }
-
-  .mixer {
-    width: 300px;
-  }
-
-  .tagline {
-    font-size: 18px;
-  }
-
 }
 
 </style>
@@ -138,20 +54,9 @@ h1 {
 
 <h1>Snuzzle</h1>
 
-<p class="tagline">Something sweet is being whipped up...</p>
+<img src="mixer.png" alt="Pink mixer whipping cream">
 
-<div class="mixer-container">
-
-<img src="mixer.png" alt="Pink mixer whipping cream" class="mixer">
-
-<div class="sparkle"></div>
-<div class="sparkle"></div>
-<div class="sparkle"></div>
-<div class="sparkle"></div>
-
-</div>
-
-<p class="footer">© Snuzzle</p>
+<p class="tagline">a sparkle muffin is coming soon</p>
 
 </body>
 </html>
