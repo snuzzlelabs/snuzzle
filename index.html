@@ -3,86 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Wanna Snuzzle?</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<title>Snuzzle Labs</title>
 
 <style>
 
-body {
-  margin: 0;
-  min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background: #ffffff;
-
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  text-align: center;
-}
-.snuzzle-link {
-  color: #FF4FA3;
-  text-decoration: none;
-  border-bottom: 1px solid #FF4FA3;
-  padding-bottom: 1px;
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,120,200,0.12), transparent 40%),
+    radial-gradient(circle at 50% 60%, rgba(0,200,255,0.10), transparent 50%),
+    #ffffff;
+  color:#111;
+  margin:0;
+  padding:40px 20px;
 }
 
-.snuzzle-link:hover {
-  opacity: 0.75;
-}
-/* Heading */
-
-h1 {
-  font-size: 64px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  color: #111;
-  margin-bottom: 24px;
+.container{
+  max-width:560px;
+  margin:auto;
+  text-align:center;
 }
 
-/* Image */
-
-img {
-  width: 360px;
-  height: auto;
-  margin-bottom: 32px;
+h1{
+  font-size:34px;
+  margin-bottom:20px;
+  font-weight:700;
 }
 
-/* Tagline */
-
-.tagline {
-  font-size: 18px;
-  color: #666;
+.cupcake{
+  position:relative;
+  margin:20px 0 10px 0;
 }
 
-/* Footer */
-
-.footer {
-  margin-top: 80px;
-  font-size: 14px;
-  color: #999;
+.cupcake::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:260px;
+  height:260px;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle, rgba(255,120,200,0.25), rgba(0,200,255,0.15), transparent 70%);
+  filter:blur(40px);
+  opacity:0.6;
+  z-index:-1;
+  animation:cupcakeGlow 6s ease-in-out infinite;
 }
 
-/* Mobile */
+@keyframes cupcakeGlow{
+  0%{opacity:0.5; transform:translate(-50%,-50%) scale(1);}
+  50%{opacity:0.75; transform:translate(-50%,-50%) scale(1.05);}
+  100%{opacity:0.5; transform:translate(-50%,-50%) scale(1);}
+}
 
-@media (max-width: 600px) {
+.cupcake img{
+  max-width:170px;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.15));
+}
 
-  h1 {
-    font-size: 46px;
-  }
+.sparkle{
+  font-size:15px;
+  color:#666;
+  margin-bottom:24px;
+}
 
-  img {
-    width: 260px;
-  }
+.products{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  text-align:left;
+}
 
-  .tagline {
-    font-size: 16px;
-  }
+.card{
+  background:#000;
+  border:1px solid #111;
+  border-radius:14px;
+  padding:16px;
+  text-decoration:none;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  transition:all .18s ease;
+}
 
+.card:hover{
+  border-color:#333;
+  transform:translateY(-3px);
+  box-shadow:0 10px 24px rgba(0,0,0,0.25);
+}
+
+.logo{
+  width:64px;
+  height:64px;
+  flex-shrink:0;
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  transition:all .25s ease;
+  filter:drop-shadow(0 0 6px rgba(255,255,255,0.3));
+}
+
+.card:hover .logo img{
+  filter:
+    drop-shadow(0 0 8px rgba(255,0,200,0.9))
+    drop-shadow(0 0 12px rgba(0,200,255,0.8));
+}
+
+.card-title{
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+.card-desc{
+  font-size:14px;
+  color:#bbb;
+}
+
+.footer{
+  margin-top:50px;
+  font-size:12px;
+  color:#bbb;
+  opacity:0.7;
 }
 
 </style>
@@ -90,16 +136,70 @@ img {
 
 <body>
 
-<h1>Wanna Snuzzle?</h1>
+<div class="container">
 
-<img src="mixer.png" alt="Pink mixer whipping cream">
+<h1>Snuzzle Labs</h1>
 
-<p>
-A sparkle muffin is coming soon...<br>
-<a href="https://snuzzle.ai">sneak peek here.</a>
-</p>
+<div class="cupcake">
+<img src="https://www.snuzzlelabs.com/cupcaketran.png">
+</div>
 
-<p class="footer">© 2026 Snuzzle Labs</p>
+<div class="sparkle">
+Making sparkle muffins. Tiny software experiments.
+</div>
+
+<div class="products" id="products"></div>
+
+<div class="footer">
+© 2026–2028 Snuzzle Labs
+</div>
+
+</div>
+
+<script>
+
+const apps = [
+
+{
+name: "Helprz",
+desc: "Business documents and contracts, sorted.",
+logo: "https://www.snuzzlelabs.com/helprzblk.png",
+url: "https://helprz.com"
+},
+
+{
+name: "BigWavez",
+desc: "See where the biggest waves in the world are right now.",
+logo: "https://www.snuzzlelabs.com/bigwavezlogo.png",
+url: "https://bigwavez.com"
+}
+
+];
+
+const container = document.getElementById("products");
+
+apps.forEach(app => {
+
+const card = document.createElement("a");
+card.className = "card";
+card.href = app.url;
+
+card.innerHTML = `
+<div class="logo">
+<img src="${app.logo}">
+</div>
+
+<div>
+<div class="card-title">${app.name}</div>
+<div class="card-desc">${app.desc}</div>
+</div>
+`;
+
+container.appendChild(card);
+
+});
+
+</script>
 
 </body>
 </html>
