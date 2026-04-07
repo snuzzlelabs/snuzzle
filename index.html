@@ -91,6 +91,7 @@ h1{
   align-items:center;
   gap:18px;
   transition:all .18s ease;
+  position:relative;
 }
 
 .card:hover{
@@ -119,6 +120,10 @@ h1{
     drop-shadow(0 0 12px rgba(0,200,255,0.8));
 }
 
+.card-content{
+  flex:1;
+}
+
 .card-title{
   font-size:19px;
   font-weight:700;
@@ -128,6 +133,21 @@ h1{
 .card-desc{
   font-size:14px;
   color:#bbb;
+}
+
+/* App Store badge */
+
+.appstore-badge{
+  height:28px;
+  opacity:0.75;
+  transition:all 0.2s ease;
+  filter:grayscale(20%);
+}
+
+.card:hover .appstore-badge{
+  opacity:1;
+  transform:translateY(-1px);
+  filter:none;
 }
 
 .footer{
@@ -192,12 +212,12 @@ Tiny software experiments.
 
 const apps = [
 
-
 {
 name: "Helprz",
 desc: "Business documents and contracts, sorted.",
 logo: "https://www.snuzzlelabs.com/helprzblk.png",
-url: "https://helprz.lovable.app"
+url: "https://helprz.lovable.app",
+appstore: "https://apps.apple.com/app/helprz/id6761499282"
 },
 
 {
@@ -222,10 +242,14 @@ card.innerHTML = `
 <img src="${app.logo}">
 </div>
 
-<div>
+<div class="card-content">
 <div class="card-title">${app.name}</div>
 <div class="card-desc">${app.desc}</div>
 </div>
+
+${app.appstore ? `
+<img class="appstore-badge" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
+` : ``}
 `;
 
 container.appendChild(card);
@@ -263,4 +287,3 @@ setInterval(createSparkle, 2500);
 
 </body>
 </html>
-
