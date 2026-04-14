@@ -80,24 +80,58 @@ h1{
   text-align:left;
 }
 
+/* ✅ UPDATED CARD STYLE ONLY */
 .card{
-  background:#000;
-  border:1px solid #111;
+  background: linear-gradient(
+    135deg,
+    rgba(20,20,30,0.85),
+    rgba(10,10,20,0.85)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius:14px;
   padding:16px;
+
   text-decoration:none;
   color:#fff;
+
   display:flex;
   align-items:center;
   gap:18px;
+
   transition:all .18s ease;
   position:relative;
 }
 
 .card:hover{
-  border-color:#333;
-  transform:translateY(-3px);
-  box-shadow:0 10px 24px rgba(0,0,0,0.25);
+  transform:translateY(-4px);
+  border-color: rgba(255,255,255,0.18);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.35),
+    0 0 20px rgba(255,120,200,0.15),
+    0 0 25px rgba(0,200,255,0.12);
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:14px;
+  opacity:0;
+  transition:opacity .2s ease;
+
+  background: radial-gradient(
+    circle at top left,
+    rgba(255,120,200,0.25),
+    transparent 40%
+  );
+}
+
+.card:hover::after{
+  opacity:1;
 }
 
 .logo{
@@ -132,7 +166,7 @@ h1{
 
 .card-desc{
   font-size:14px;
-  color:#bbb;
+  color:rgba(255,255,255,0.7);
 }
 
 /* App Store badge */
