@@ -35,6 +35,8 @@ h1{
   font-weight:700;
 }
 
+/* CUPCAKE */
+
 .cupcake{
   position:relative;
   margin:20px 0 10px 0;
@@ -66,16 +68,33 @@ h1{
   filter: drop-shadow(0 10px 18px rgba(0,0,0,0.15));
 }
 
-.sparkle{
-  font-size:15px;
-  color:#666;
-  margin-bottom:24px;
-  line-height:1.7;
+/* HERO */
+
+.hero{
+  margin:10px 0 28px 0;
+  line-height:1.6;
 }
 
-.sparkle-emoji{
+.hero-title{
   font-size:20px;
+  font-weight:600;
+  margin-bottom:8px;
 }
+
+.hero-sub{
+  font-size:14px;
+  color:#555;
+  max-width:420px;
+  margin:0 auto;
+}
+
+.hero-note{
+  margin-top:10px;
+  font-size:13px;
+  color:#888;
+}
+
+/* PRODUCTS */
 
 .products{
   display:flex;
@@ -89,9 +108,12 @@ h1{
 .card{
   background: linear-gradient(
     135deg,
-    rgba(20,20,30,0.9),
-    rgba(10,10,20,0.9)
+    rgba(18,18,28,0.95),
+    rgba(8,8,16,0.95)
   );
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+
   backdrop-filter: blur(12px);
   border-radius:14px;
   padding:16px;
@@ -104,12 +126,25 @@ h1{
   transition:all .18s ease;
   position:relative;
 
-  color:#fff; /* ✅ FIXED TEXT COLOR */
+  color:#fff;
 }
 
 .card:hover{
-  transform:translateY(-4px);
+  transform:translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
+
+.card::after{
+  content:"→";
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:rgba(255,255,255,0.3);
+  font-size:16px;
+}
+
+/* LOGO */
 
 .logo{
   width:64px;
@@ -119,7 +154,11 @@ h1{
 
 .logo img{
   width:100%;
+  border-radius:14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
+
+/* CONTENT */
 
 .card-content{
   flex:1;
@@ -130,9 +169,16 @@ h1{
   font-weight:700;
 }
 
-.card-desc{
+.tagline{
   font-size:14px;
   color:rgba(255,255,255,0.75);
+}
+
+.hook{
+  font-size:13px;
+  color:rgba(255,255,255,0.95);
+  margin-top:2px;
+  font-weight:500;
 }
 
 /* RIGHT SIDE */
@@ -152,13 +198,15 @@ h1{
   transform:translateY(-2px);
 }
 
+/* FOOTER */
+
 .footer{
   margin-top:50px;
   font-size:12px;
   color:#bbb;
 }
 
-/* sparkle */
+/* SPARKLE */
 
 .sparkle-float{
   position:absolute;
@@ -186,10 +234,13 @@ h1{
 <img src="https://www.snuzzlelabs.com/cupcaketran.png">
 </div>
 
-<div class="sparkle">
-Making sparkle muffins.<br>
-<span class="sparkle-emoji">✨</span><br>
-Tiny software experiments.
+<div class="hero">
+  <div class="hero-title">Small software. On purpose.</div>
+  <div class="hero-sub">
+    Most software gets bigger, slower, and harder to use.<br>
+    We build tools that stay fast, focused, and quietly indispensable.
+  </div>
+  <div class="hero-note">✨ occasionally with a bit of sparkle</div>
 </div>
 
 <div class="products" id="products"></div>
@@ -205,14 +256,16 @@ Tiny software experiments.
 const apps = [
 {
 name: "Helprz",
-desc: "Business documents and contracts, sorted.",
+tagline: "Business documents and contracts, sorted.",
+hook: "Clarity over chaos.",
 logo: "https://www.snuzzlelabs.com/Helprz1024.png",
 url: "https://www.helprz.com",
 appstore: "https://apps.apple.com/au/app/helprz/id6761499282"
 },
 {
 name: "BigWavez",
-desc: "See where the biggest waves in the world are right now.",
+tagline: "See where the biggest waves are right now.",
+hook: "Signal, not noise.",
 logo: "https://www.snuzzlelabs.com/bigwavezlogo.png",
 url: "https://bigwavez.base44.app"
 }
@@ -225,7 +278,6 @@ apps.forEach(app => {
 const card = document.createElement("div");
 card.className = "card";
 
-/* CARD CLICK */
 card.addEventListener("click", () => {
   window.location.href = app.url;
 });
@@ -245,7 +297,8 @@ card.innerHTML = `
 
 <div class="card-content">
   <div class="card-title">${app.name}</div>
-  <div class="card-desc">${app.desc}</div>
+  <div class="tagline">${app.tagline}</div>
+  <div class="hook">${app.hook}</div>
 </div>
 
 ${right}
@@ -253,7 +306,6 @@ ${right}
 
 container.appendChild(card);
 
-/* APP STORE CLICK */
 const badge = card.querySelector(".appstore-badge");
 if (badge) {
   badge.addEventListener("click", (e) => {
