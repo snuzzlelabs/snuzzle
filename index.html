@@ -15,31 +15,35 @@
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   background:
-    radial-gradient(circle at 50% 20%, rgba(255,120,200,0.12), transparent 40%),
-    radial-gradient(circle at 50% 60%, rgba(0,200,255,0.10), transparent 50%),
-    #ffffff;
-  color:#111;
+    radial-gradient(circle at 20% 10%, rgba(255,140,200,0.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,200,255,0.15), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(120,255,200,0.12), transparent 50%),
+    #0b0b12;
+  color:#f5f5f7;
   margin:0;
-  padding:40px 20px;
+  padding:48px 20px;
 }
 
 .container{
-  max-width:560px;
+  max-width:580px;
   margin:auto;
   text-align:center;
 }
 
+/* TITLE */
+
 h1{
   font-size:34px;
-  margin-bottom:20px;
+  margin-bottom:18px;
   font-weight:700;
+  letter-spacing:0.3px;
 }
 
 /* CUPCAKE */
 
 .cupcake{
   position:relative;
-  margin:20px 0 10px 0;
+  margin:20px 0 18px 0;
 }
 
 .cupcake::before{
@@ -47,51 +51,55 @@ h1{
   position:absolute;
   left:50%;
   top:50%;
-  width:260px;
-  height:260px;
+  width:280px;
+  height:280px;
   transform:translate(-50%,-50%);
-  background:radial-gradient(circle, rgba(255,120,200,0.25), rgba(0,200,255,0.15), transparent 70%);
-  filter:blur(40px);
-  opacity:0.6;
+  background:radial-gradient(circle, rgba(255,120,200,0.35), rgba(0,200,255,0.25), transparent 70%);
+  filter:blur(45px);
+  opacity:0.7;
   z-index:-1;
-  animation:cupcakeGlow 6s ease-in-out infinite;
+  animation:cupcakeGlow 7s ease-in-out infinite;
 }
 
 @keyframes cupcakeGlow{
   0%{opacity:0.5; transform:translate(-50%,-50%) scale(1);}
-  50%{opacity:0.75; transform:translate(-50%,-50%) scale(1.05);}
+  50%{opacity:0.85; transform:translate(-50%,-50%) scale(1.08);}
   100%{opacity:0.5; transform:translate(-50%,-50%) scale(1);}
 }
 
 .cupcake img{
   max-width:170px;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.15));
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.5));
 }
 
 /* HERO */
 
 .hero{
-  margin:10px 0 28px 0;
-  line-height:1.6;
+  margin:10px 0 34px 0;
+  line-height:1.7;
 }
 
 .hero-title{
   font-size:20px;
   font-weight:600;
-  margin-bottom:8px;
+  margin-bottom:10px;
 }
 
 .hero-sub{
   font-size:14px;
-  color:#555;
-  max-width:420px;
+  color:#cfcfe3;
+  max-width:440px;
   margin:0 auto;
 }
 
+.hero-sub p{
+  margin:6px 0;
+}
+
 .hero-note{
-  margin-top:10px;
+  margin-top:14px;
   font-size:13px;
-  color:#888;
+  color:#9aa0b5;
 }
 
 /* PRODUCTS */
@@ -99,7 +107,7 @@ h1{
 .products{
   display:flex;
   flex-direction:column;
-  gap:16px;
+  gap:18px;
   text-align:left;
 }
 
@@ -108,54 +116,78 @@ h1{
 .card{
   background: linear-gradient(
     135deg,
-    rgba(18,18,28,0.95),
-    rgba(8,8,16,0.95)
+    rgba(25,25,40,0.9),
+    rgba(10,10,20,0.9)
   );
   border:1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.4);
 
-  backdrop-filter: blur(12px);
-  border-radius:14px;
-  padding:16px;
+  backdrop-filter: blur(14px);
+  border-radius:18px;
+  padding:18px;
 
   display:flex;
   align-items:center;
   gap:18px;
 
   cursor:pointer;
-  transition:all .18s ease;
+  transition:all .2s ease;
   position:relative;
 
   color:#fff;
 }
 
 .card:hover{
-  transform:translateY(-4px) scale(1.01);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  transform:translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.5);
 }
 
 .card::after{
   content:"→";
   position:absolute;
-  right:14px;
+  right:16px;
   top:50%;
   transform:translateY(-50%);
-  color:rgba(255,255,255,0.3);
+  color:rgba(255,255,255,0.25);
   font-size:16px;
 }
 
-/* LOGO */
+/* LOGO GLOW */
 
 .logo{
   width:64px;
   height:64px;
   flex-shrink:0;
+  position:relative;
+}
+
+.logo::before{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border-radius:20px;
+  background: radial-gradient(
+    circle,
+    var(--glow),
+    transparent 70%
+  );
+  filter: blur(14px);
+  opacity:0.9;
+  z-index:0;
+  transition: all .3s ease;
+}
+
+.card:hover .logo::before{
+  transform: scale(1.08);
+  opacity:1;
 }
 
 .logo img{
   width:100%;
   border-radius:14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  position:relative;
+  z-index:1;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
 }
 
 /* CONTENT */
@@ -165,8 +197,8 @@ h1{
 }
 
 .card-title{
-  font-size:19px;
-  font-weight:700;
+  font-size:18px;
+  font-weight:600;
 }
 
 .tagline{
@@ -176,34 +208,16 @@ h1{
 
 .hook{
   font-size:13px;
-  color:rgba(255,255,255,0.95);
-  margin-top:2px;
-  font-weight:500;
-}
-
-/* RIGHT SIDE */
-
-.card-right{
-  display:flex;
-  align-items:center;
-}
-
-.appstore-badge{
-  height:34px;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.appstore-badge:hover{
-  transform:translateY(-2px);
+  color:rgba(255,255,255,0.9);
+  margin-top:3px;
 }
 
 /* FOOTER */
 
 .footer{
-  margin-top:50px;
+  margin-top:60px;
   font-size:12px;
-  color:#bbb;
+  color:#888;
 }
 
 /* SPARKLE */
@@ -218,7 +232,7 @@ h1{
 @keyframes sparkleFloat{
   0%{opacity:0;}
   20%{opacity:1;}
-  100%{transform:translateY(-40px);opacity:0;}
+  100%{transform:translateY(-50px);opacity:0;}
 }
 
 </style>
@@ -235,12 +249,13 @@ h1{
 </div>
 
 <div class="hero">
-  <div class="hero-title">Small software. On purpose.</div>
+  <div class="hero-title">We make small, slightly magical software.</div>
   <div class="hero-sub">
-    Most software gets bigger, slower, and harder to use.<br>
-    We build tools that stay fast, focused, and quietly indispensable.
+    <p>Some of it helps you run a business.</p>
+    <p>Some of it tells you where the waves are.</p>
+    <p>All of it starts tiny—and grows only if it deserves to.</p>
   </div>
-  <div class="hero-note">✨ occasionally with a bit of sparkle</div>
+  <div class="hero-note">✨ baked fresh, occasionally</div>
 </div>
 
 <div class="products" id="products"></div>
@@ -257,17 +272,18 @@ const apps = [
 {
 name: "Helprz",
 tagline: "Business documents and contracts, sorted.",
-hook: "Clarity over chaos.",
+hook: "keeps things under control",
 logo: "https://www.snuzzlelabs.com/Helprz1024.png",
 url: "https://www.helprz.com",
-appstore: "https://apps.apple.com/au/app/helprz/id6761499282"
+glow: "rgba(0,200,255,0.35)"
 },
 {
 name: "BigWavez",
-tagline: "See where the biggest waves are right now.",
-hook: "Signal, not noise.",
+tagline: "Find where the waves are actually good right now.",
+hook: "so you don't have to",
 logo: "https://www.snuzzlelabs.com/bigwavezlogo.png",
-url: "https://bigwavez.base44.app"
+url: "https://bigwavez.base44.app",
+glow: "rgba(255,120,200,0.35)"
 }
 ];
 
@@ -282,16 +298,8 @@ card.addEventListener("click", () => {
   window.location.href = app.url;
 });
 
-const right = app.appstore
-? `<div class="card-right">
-     <img class="appstore-badge"
-       src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-       data-link="${app.appstore}">
-   </div>`
-: ``;
-
 card.innerHTML = `
-<div class="logo">
+<div class="logo" style="--glow:${app.glow}">
   <img src="${app.logo}">
 </div>
 
@@ -300,19 +308,9 @@ card.innerHTML = `
   <div class="tagline">${app.tagline}</div>
   <div class="hook">${app.hook}</div>
 </div>
-
-${right}
 `;
 
 container.appendChild(card);
-
-const badge = card.querySelector(".appstore-badge");
-if (badge) {
-  badge.addEventListener("click", (e) => {
-    e.stopPropagation();
-    window.open(badge.dataset.link, "_blank");
-  });
-}
 
 });
 
