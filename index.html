@@ -8,7 +8,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
 <link rel="apple-touch-icon" href="/favicon-64.png">
-  <style>
+
+<style>
 
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -83,7 +84,8 @@ h1{
   text-align:left;
 }
 
-/* ✅ UPDATED CARD STYLE ONLY */
+/* CARD */
+
 .card{
   background: linear-gradient(
     135deg,
@@ -172,11 +174,22 @@ h1{
   color:rgba(255,255,255,0.7);
 }
 
-/* App Store badge */
+/* RIGHT SIDE CTA */
+
+.card-right{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+}
+
+.appstore-link{
+  display:flex;
+  align-items:center;
+}
 
 .appstore-badge{
-  height:28px;
-  opacity:0.75;
+  height:32px;
+  opacity:0.8;
   transition:all 0.2s ease;
   filter:grayscale(20%);
 }
@@ -187,6 +200,8 @@ h1{
   filter:none;
 }
 
+/* footer */
+
 .footer{
   margin-top:50px;
   font-size:12px;
@@ -194,7 +209,7 @@ h1{
   opacity:0.7;
 }
 
-/* floating sparkle animation */
+/* sparkle animation */
 
 .sparkle-float{
   position:absolute;
@@ -205,17 +220,9 @@ h1{
 }
 
 @keyframes sparkleFloat{
-  0%{
-    transform:translateY(0);
-    opacity:0;
-  }
-  20%{
-    opacity:1;
-  }
-  100%{
-    transform:translateY(-40px);
-    opacity:0;
-  }
+  0%{ transform:translateY(0); opacity:0; }
+  20%{ opacity:1; }
+  100%{ transform:translateY(-40px); opacity:0; }
 }
 
 </style>
@@ -253,8 +260,8 @@ const apps = [
 name: "Helprz",
 desc: "Business documents and contracts, sorted.",
 logo: "https://www.snuzzlelabs.com/Helprz1024.png",
-url: "https://helprz.lovable.app",
-appstore: "https://apps.apple.com/app/helprz/id6761499282"
+url: "https://www.helprz.com",
+appstore: "https://apps.apple.com/au/app/helprz/id6761499282"
 },
 
 {
@@ -276,16 +283,20 @@ card.href = app.url;
 
 card.innerHTML = `
 <div class="logo">
-<img src="${app.logo}">
+  <img src="${app.logo}">
 </div>
 
 <div class="card-content">
-<div class="card-title">${app.name}</div>
-<div class="card-desc">${app.desc}</div>
+  <div class="card-title">${app.name}</div>
+  <div class="card-desc">${app.desc}</div>
 </div>
 
 ${app.appstore ? `
-<img class="appstore-badge" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
+<div class="card-right">
+  <a href="${app.appstore}" target="_blank" class="appstore-link" onclick="event.stopPropagation();">
+    <img class="appstore-badge" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
+  </a>
+</div>
 ` : ``}
 `;
 
@@ -293,29 +304,24 @@ container.appendChild(card);
 
 });
 
-
-/* sparkle animation around cupcake */
+/* sparkle animation */
 
 const cupcake = document.getElementById("cupcake");
 
 function createSparkle(){
+  const sparkle = document.createElement("div");
+  sparkle.className = "sparkle-float";
+  sparkle.innerText = "✨";
 
-const sparkle = document.createElement("div");
-sparkle.className = "sparkle-float";
-sparkle.innerText = "✨";
+  const x = Math.random() * 120 - 60;
+  const y = Math.random() * 40;
 
-const x = Math.random() * 120 - 60;
-const y = Math.random() * 40;
+  sparkle.style.left = `calc(50% + ${x}px)`;
+  sparkle.style.top = `${y + 40}px`;
 
-sparkle.style.left = `calc(50% + ${x}px)`;
-sparkle.style.top = `${y + 40}px`;
+  cupcake.appendChild(sparkle);
 
-cupcake.appendChild(sparkle);
-
-setTimeout(()=>{
-sparkle.remove();
-},2500);
-
+  setTimeout(()=> sparkle.remove(), 2500);
 }
 
 setInterval(createSparkle, 2500);
