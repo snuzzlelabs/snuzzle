@@ -84,11 +84,13 @@ h1{
   text-align:left;
 }
 
+/* CARD */
+
 .card{
   background: linear-gradient(
     135deg,
-    rgba(20,20,30,0.85),
-    rgba(10,10,20,0.85)
+    rgba(20,20,30,0.9),
+    rgba(10,10,20,0.9)
   );
   backdrop-filter: blur(12px);
   border-radius:14px;
@@ -101,6 +103,8 @@ h1{
   cursor:pointer;
   transition:all .18s ease;
   position:relative;
+
+  color:#fff; /* ✅ FIXED TEXT COLOR */
 }
 
 .card:hover{
@@ -128,8 +132,10 @@ h1{
 
 .card-desc{
   font-size:14px;
-  color:rgba(255,255,255,0.7);
+  color:rgba(255,255,255,0.75);
 }
+
+/* RIGHT SIDE */
 
 .card-right{
   display:flex;
@@ -247,13 +253,12 @@ ${right}
 
 container.appendChild(card);
 
-/* APP STORE CLICK (separate handler) */
+/* APP STORE CLICK */
 const badge = card.querySelector(".appstore-badge");
 if (badge) {
   badge.addEventListener("click", (e) => {
     e.stopPropagation();
-    const link = badge.getAttribute("data-link");
-    window.open(link, "_blank");
+    window.open(badge.dataset.link, "_blank");
   });
 }
 
