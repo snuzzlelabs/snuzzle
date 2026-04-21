@@ -99,7 +99,6 @@ h1{
   border-radius:14px;
   padding:16px;
 
-  text-decoration:none;
   color:#fff;
 
   display:flex;
@@ -108,6 +107,7 @@ h1{
 
   transition:all .18s ease;
   position:relative;
+  cursor:pointer;
 }
 
 .card:hover{
@@ -182,14 +182,9 @@ h1{
   justify-content:flex-end;
 }
 
-.appstore-link{
-  display:flex;
-  align-items:center;
-}
-
 .appstore-badge{
   height:32px;
-  opacity:0.8;
+  opacity:0.85;
   transition:all 0.2s ease;
   filter:grayscale(20%);
 }
@@ -258,7 +253,7 @@ const apps = [
 
 {
 name: "Helprz",
-desc: "Business documents, sorted.",
+desc: "Business documents and contracts, sorted.",
 logo: "https://www.snuzzlelabs.com/Helprz1024.png",
 url: "https://www.helprz.com",
 appstore: "https://apps.apple.com/au/app/helprz/id6761499282"
@@ -277,9 +272,12 @@ const container = document.getElementById("products");
 
 apps.forEach(app => {
 
-const card = document.createElement("a");
+const card = document.createElement("div");
 card.className = "card";
-card.href = app.url;
+
+card.onclick = () => {
+  window.location.href = app.url;
+};
 
 card.innerHTML = `
 <div class="logo">
@@ -293,7 +291,7 @@ card.innerHTML = `
 
 ${app.appstore ? `
 <div class="card-right">
-  <a href="${app.appstore}" target="_blank" class="appstore-link" onclick="event.stopPropagation();">
+  <a href="${app.appstore}" target="_blank" onclick="event.stopPropagation();">
     <img class="appstore-badge" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
   </a>
 </div>
