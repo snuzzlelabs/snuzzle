@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -223,6 +224,35 @@ h1{
   transform:translateY(-2px);
 }
 
+/* MOONMAIL BUTTON */
+
+.chat-button{
+  border:none;
+  background:linear-gradient(
+    135deg,
+    rgba(255,120,200,0.95),
+    rgba(140,120,255,0.95)
+  );
+
+  color:white;
+  font-size:14px;
+  font-weight:600;
+  padding:10px 16px;
+  border-radius:999px;
+  cursor:pointer;
+
+  box-shadow:
+    0 4px 14px rgba(255,120,200,0.35);
+
+  transition:all .18s ease;
+}
+
+.chat-button:hover{
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:
+    0 8px 22px rgba(255,120,200,0.45);
+}
+
 /* FOOTER */
 
 .footer{
@@ -291,6 +321,13 @@ name: "BigWavez",
 desc: "See where the biggest waves in the world are right now.",
 logo: "https://www.snuzzlelabs.com/bigwavezlogo.png",
 url: "https://bigwavez.base44.app"
+},
+{
+name: "MoonMail",
+desc: "Tiny emotional support, delivered gently.",
+logo: "https://www.snuzzlelabs.com/moonmail.png",
+url: "https://chatgpt.com/g/YOUR_GPT_ID_HERE",
+button: "Chat ✨"
 }
 ];
 
@@ -310,6 +347,10 @@ const right = app.appstore
      <img class="appstore-badge"
        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
        data-link="${app.appstore}">
+   </div>`
+: app.button
+? `<div class="card-right">
+     <button class="chat-button">${app.button}</button>
    </div>`
 : ``;
 
@@ -333,6 +374,14 @@ if (badge) {
   badge.addEventListener("click", (e) => {
     e.stopPropagation();
     window.open(badge.dataset.link, "_blank");
+  });
+}
+
+const button = card.querySelector(".chat-button");
+if (button) {
+  button.addEventListener("click", (e) => {
+    e.stopPropagation();
+    window.open(app.url, "_blank");
   });
 }
 
@@ -361,3 +410,4 @@ setInterval(createSparkle,2500);
 
 </body>
 </html>
+```
